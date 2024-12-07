@@ -1,0 +1,44 @@
+@import "@/assets/variables.scss";
+
+$statuses: (
+  "status1": (
+    title: "resolved",
+    bgColor: $resolved,
+    color: $statusText,
+  ),
+  "status2": (
+    title: "in_work",
+    bgColor: $inWork,
+    color: $statusText,
+  ),
+  "status3": (
+    title: "to_do",
+    bgColor: $toDo,
+    color: $statusText,
+  ),
+  "status4": (
+    title: "cancelled",
+    bgColor: $cancelled,
+    color: $statusText,
+  ),
+);
+
+.todo-status {
+  padding: 5px 10px;
+  border-radius: 10px;
+  width: fit-content;
+  transition: 0.3s ease;
+}
+
+@for $i from 1 through length($statuses) {
+  $status: map-get($statuses, status#{$i});
+
+  $title: map-get($status, title);
+  $bgColor: map-get($status, bgColor);
+  $color: map-get($status, color);
+
+  .todo-status--#{$title} {
+    background-color: $bgColor;
+    color: $color;
+  }
+}

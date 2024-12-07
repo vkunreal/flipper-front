@@ -1,0 +1,20 @@
+.title {
+  font-family: Helvetica;
+  font-weight: 400;
+  letter-spacing: 0.1rem;
+}
+
+$headings: (
+  h1: 22px,
+  h2: 20px,
+  h3: 18px,
+  h4: 16px,
+  h5: 14px,
+  h6: 12px
+);
+
+@each $heading, $size in $headings {
+  .#{$heading} {
+    font-size: $size;
+  }
+}
