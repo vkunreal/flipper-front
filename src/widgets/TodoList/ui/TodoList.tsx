@@ -1,16 +1,16 @@
-import { $loading, $todoList, fetchTodos } from "@/app/store/TodoStore";
-import { TodoSkeleton } from "@/entities/TodoSkeleton";
-import { Loader } from "@/shared/ui/Loader";
-import { useUnit } from "effector-react";
-import { useEffect } from "react";
+import { $loading, $todoList, fetchTodos } from '@/app/store/TodoStore'
+import { TodoSkeleton } from '@/entities/TodoSkeleton'
+import { Loader } from '@/shared/ui/Loader'
+import { useUnit } from 'effector-react'
+import { useEffect } from 'react'
 
 export const TodoList = () => {
-  const todos = useUnit($todoList);
-  const loading = useUnit($loading);
+  const todos = useUnit($todoList)
+  const loading = useUnit($loading)
 
   useEffect(() => {
-    fetchTodos();
-  }, []);
+    fetchTodos()
+  }, [])
 
   return (
     <div>
@@ -21,5 +21,5 @@ export const TodoList = () => {
         <Loader />
       )}
     </div>
-  );
-};
+  )
+}
