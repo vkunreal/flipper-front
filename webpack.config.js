@@ -1,63 +1,103 @@
-const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin')
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const TerserPlugin = require('terser-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const webpack = require('webpack')
+const path = require('path')
 
 require('dotenv').config()
 
 const isDevelopment = process.env.NODE_ENV !== 'production'
 
 module.exports = {
+  mode: isDevelopment ? 'development' : 'production',
+
   entry: './src/index.tsx',
+
   output: {
-    filename: 'bundle.js',
-    path: path.resolve(__dirname, 'dist'),
+    filename: 'bundle.[hash].js',
+    path: path.resolve(__dirname, 'build'),
     clean: true,
   },
+
   resolve: {
-    extensions: ['.tsx', '.ts', '.js', '.scss'],
+    extensions: ['.tsx', '.ts', '.js', '.jsx', '.css', '.scss'],
     alias: {
       '@': path.resolve(__dirname, 'src'),
     },
   },
+
   module: {
     rules: [
+      {
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+        },
+      },
       {
         test: /\.(ts|tsx)$/,
         use: [
           {
             loader: 'ts-loader',
             options: {
-              transpileOnly: true,
-              getCustomTransformers: () => ({
-                before: [require('react-refresh-typescript')()],
+              ...(isDevelopment && {
+                getCustomTransformers: () => ({
+                  before: [require('react-refresh-typescript').default()],
+                }),
               }),
+              transpileOnly: true,
             },
           },
         ],
         exclude: /node_modules/,
       },
       {
-        test: /\.module\.scss$/,
+        test: /\.css$/,
+        exclude: /\.module\.css$/,
+        use: [
+          isDevelopment ? 'style-loader' : MiniCssExtractPlugin.loader,
+          'css-loader',
+        ],
+      },
+      {
+        test: /\.module\.css$/,
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              esModule: false,
+              modules: true,
+            },
+          },
+        ],
+      },
+      {
+        test: /\.s[ac]ss$/,
+        exclude: /\.module\.scss$/,
+        use: [
+          isDevelopment ? 'style-loader' : MiniCssExtractPlugin.loader,
+          'css-loader',
+          'sass-loader',
+        ],
+      },
+      {
+        test: /\.module\.s[ac]ss$/,
         use: [
           isDevelopment ? 'style-loader' : MiniCssExtractPlugin.loader,
           {
             loader: 'css-loader',
             options: {
+              esModule: false,
               modules: true,
             },
           },
           'sass-loader',
         ],
-      },
-      {
-        test: /\.scss$/,
-        exclude: /\.module\.scss$/,
-        use: ['style-loader', 'css-loader', 'sass-loader'],
       },
       {
         test: /\.(png|jpe?g|gif|svg)$/i,
@@ -91,6 +131,7 @@ module.exports = {
       },
     ],
   },
+
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
@@ -105,6 +146,7 @@ module.exports = {
       persistentCache: false,
       inject: true,
     }),
+    isDevelopment && new webpack.HotModuleReplacementPlugin(),
     isDevelopment && new ReactRefreshWebpackPlugin(),
     !isDevelopment &&
       new MiniCssExtractPlugin({
@@ -117,15 +159,16 @@ module.exports = {
       ),
       'process.env.API_URL': JSON.stringify(process.env.API_URL),
     }),
-  ].filter(Boolean),
+  ],
+
   optimization: {
     minimize: !isDevelopment,
     minimizer: [new TerserPlugin()],
   },
+
   devServer: {
-    static: './dist',
+    static: './build',
     hot: true,
     open: true,
   },
-  mode: isDevelopment ? 'development' : 'production',
 }

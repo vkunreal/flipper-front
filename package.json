@@ -23,7 +23,7 @@
     "axios": "^1.7.9",
     "cors": "^2.8.5",
     "effector": "^23.2.3",
-    "effector-react": "^23.2.1",
+    "effector-react": "^23.3.0",
     "express": "^4.21.2",
     "json-server": "^1.0.0-beta.3",
     "react": "^19.0.0",
