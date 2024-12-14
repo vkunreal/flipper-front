@@ -5,7 +5,7 @@
       "@/*": ["*"],
       "@features/*": ["./src/features"],
       "@entities/*": ["./src/entities"],
-      "@shared/*": ["./src/shared"]
+      "@shared/*": ["./src/shared/*"]
     },
     "target": "es6",
     "module": "commonjs",

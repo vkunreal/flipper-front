@@ -1,9 +1,12 @@
-import { TodoStatuses } from "./TodoStatuses";
+import { TodoStatuses } from './TodoStatuses'
 
-export interface ITodo {
-  id: number;
-  title: string;
-  text: string;
-  status: TodoStatuses;
-  isAttach: boolean;
+export interface DraftTodo {
+  title: string
+  text: string
+  isAttach: boolean
+}
+
+export interface ITodo extends DraftTodo {
+  id: number
+  status: TodoStatuses
 }

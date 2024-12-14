@@ -9,7 +9,7 @@ const path = require('path')
 
 require('dotenv').config()
 
-const isDevelopment = process.env.NODE_ENV !== 'production'
+const isDevelopment = process.env.NODE_ENV === 'development'
 
 module.exports = {
   mode: isDevelopment ? 'development' : 'production',
@@ -66,7 +66,7 @@ module.exports = {
       {
         test: /\.module\.css$/,
         use: [
-          'style-loader',
+          isDevelopment ? 'style-loader' : MiniCssExtractPlugin.loader,
           {
             loader: 'css-loader',
             options: {

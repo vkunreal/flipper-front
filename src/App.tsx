@@ -1,13 +1,13 @@
-import { TodoList } from "./widgets/TodoList";
+import { MainPage } from './app/ui/MainPage'
 
-import "./App.scss";
+import './App.scss'
 
 const App = () => {
   return (
     <>
-      <TodoList />
+      <MainPage />
     </>
-  );
-};
+  )
+}
 
-export default App;
+export default App

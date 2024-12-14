@@ -1,4 +1,4 @@
-// @import './assets/variables.scss';
+@use './assets/variables.scss';
 
 * {
   font-family: Arial;
@@ -6,4 +6,10 @@
   padding: 0;
   box-sizing: border-box;
   border: 0;
+}
+
+.wrapper {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
 }

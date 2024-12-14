@@ -1,7 +1,7 @@
 import { ITodo } from '@/shared/model/Todo'
 import { TodoStatuses } from '@/shared/model/TodoStatuses'
 import { createEffect, createEvent, createStore } from 'effector'
-import { API_ROUTES, API_V1 } from '@/shared/api'
+import { API_ROUTES } from '@/shared/api'
 import axios from 'axios'
 
 export const addTodo = createEvent<ITodo>()

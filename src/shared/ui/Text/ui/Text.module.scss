@@ -1,4 +1,12 @@
-.text {
+.textTag {
   letter-spacing: 0.05rem;
   font-family: Arial;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.showMore {
+  color: #777;
+  cursor: pointer;
 }
