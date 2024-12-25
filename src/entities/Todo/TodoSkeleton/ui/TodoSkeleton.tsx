@@ -1,17 +1,17 @@
-import { ITodo } from '@/shared/model/Todo'
+import { Todo } from '@/shared/model/Todo'
 import { Title } from '@/shared/ui/Title'
 import { Text } from '@/shared/ui/Text'
 
 import styles from './TodoSkeleton.module.scss'
 
-interface ITodoProps extends ITodo {
+interface TodoProps extends Todo {
   statusBar?: React.ReactNode
   title: string
   text: string
   isAttach: boolean
 }
 
-export const TodoSkeleton: React.FC<ITodoProps> = ({ title, text }) => {
+export const TodoSkeleton: React.FC<TodoProps> = ({ title, text }) => {
   return (
     <div className={styles.todoItem}>
       <Title className={styles.title}>{title}</Title>

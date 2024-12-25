@@ -1,4 +1,4 @@
-import { MainPage } from './app/ui/MainPage'
+import { MainPage } from './ui/MainPage'
 
 import './App.scss'
 

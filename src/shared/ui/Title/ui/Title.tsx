@@ -17,7 +17,6 @@ export const Title: React.FC<ITitleProps> = ({
   maxLetters,
   children,
 }) => {
-  console.log('test', styles)
   return (
     <Tag className={className(styles.title, Tag, propsClass)}>
       {maxLetters ? catLongText(children, maxLetters) : children}

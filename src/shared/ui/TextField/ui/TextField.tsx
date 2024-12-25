@@ -29,6 +29,10 @@ export const TextField: React.FC<ITextFieldProps> = ({
       value={value}
       placeholder={placeholder}
       onChange={onChange}
+      {...(!isTextArea &&
+        {
+          // muk
+        })}
     />
   )
 }

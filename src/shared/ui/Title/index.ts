@@ -1,1 +1,1 @@
-export { Title } from './ui/Title.tsx'
+export { Title } from './ui/Title'

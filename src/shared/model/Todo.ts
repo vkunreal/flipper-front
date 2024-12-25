@@ -6,7 +6,7 @@ export interface DraftTodo {
   isAttach: boolean
 }
 
-export interface ITodo extends DraftTodo {
+export interface Todo extends DraftTodo {
   id: number
   status: TodoStatuses
 }

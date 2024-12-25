@@ -13,7 +13,7 @@ export const CreateTodoBlock: React.FC = () => {
 
   const changeField = useCallback((field: keyof DraftTodo) => {
     return ({ target: { value } }: ChangeEvent) => {
-      setTodoData((prev) => ({ ...prev, [field]: value.trim() }))
+      setTodoData((prev) => ({ ...prev, [field]: value }))
     }
   }, [])
 

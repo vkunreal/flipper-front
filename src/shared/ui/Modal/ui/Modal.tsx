@@ -8,8 +8,8 @@ interface IModalProps {
 
 export const Modal: React.FC<IModalProps> = ({ isOpen, onClose, children }) => {
   return isOpen ? (
-    <div className={styles.modalWrapper}>
-      <div className={styles.modalBlock}>
+    <div className={styles.modalWrapper} onClick={onClose}>
+      <div className={styles.modalBlock} onClick={(e) => e.stopPropagation()}>
         <button type="button" className={styles.modalCross} onClick={onClose}>
           &times;
         </button>
