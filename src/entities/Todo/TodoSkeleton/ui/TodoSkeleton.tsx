@@ -14,7 +14,11 @@ interface TodoProps extends Todo {
 export const TodoSkeleton: React.FC<TodoProps> = ({ title, text }) => {
   return (
     <div className={styles.todoItem}>
-      <Title className={styles.title}>{title}</Title>
+      <Title className={styles.title} tag="h3">
+        {title}
+      </Title>
+
+      <div className={styles.divider} />
 
       <Text maxLetters={150}>{text}</Text>
       {/* {statusBar}

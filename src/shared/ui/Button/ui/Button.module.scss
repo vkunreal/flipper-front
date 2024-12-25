@@ -1,6 +1,18 @@
 .button {
-  font-size: 14px;
-  border-radius: 2px;
-  padding: 5px 10px;
-  border: 2px solid green;
+  background-color: #1976d2; /* Основной цвет кнопки */
+  color: white; /* Цвет текста */
+  border: none; /* Без рамки */
+  border-radius: 4px; /* Закругленные углы */
+  padding: 10px 20px; /* Отступы */
+  font-size: 16px; /* Размер текста */
+  cursor: pointer; /* Курсор при наведении */
+  overflow: hidden;
+
+  &:hover {
+    background-color: #0062cb;
+  }
+
+  &:active {
+    background-color: #0056b3;
+  }
 }

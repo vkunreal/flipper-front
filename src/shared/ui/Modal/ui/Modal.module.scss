@@ -1,3 +1,5 @@
+@use '@/app/assets/media.scss' as *;
+
 .modalWrapper {
   position: fixed;
   width: 100%;
@@ -8,6 +10,14 @@
   z-index: 1000;
   background-color: rgba(0, 0, 0, 0.5);
   animation: fadeIn 0.5s;
+
+  @include tablet {
+    padding-top: 10%;
+  }
+
+  @include mobile {
+    padding-top: 15%;
+  }
 }
 
 @keyframes fadeIn {
@@ -20,18 +30,21 @@
 }
 
 .modalBlock {
-  padding: 10px;
   background: #fff;
   position: relative;
   border-radius: 10px;
   animation: slideUp 0.5s forwards;
-  max-width: 500px;
-  max-height: 60vh;
   overflow-y: scroll;
+  padding: 20px;
+  width: 100%;
 
-  // & textarea {
-  //   max-width: 100%;
-  // }
+  @include tablet {
+    width: 100%;
+    height: 100%;
+    border-bottom-left-radius: unset;
+    border-bottom-right-radius: unset;
+    bottom: 0;
+  }
 }
 
 @keyframes slideUp {
@@ -44,21 +57,17 @@
 }
 
 .modalCross {
-  cursor: pointer;
-  font-size: 15px;
+  font-size: 25px;
   width: 20px;
   height: 20px;
-  background: #eee;
   color: #333;
-  border-radius: 50%;
+  border-radius: 5px;
   display: flex;
   justify-content: center;
   align-items: center;
   transition: 0.3s;
-  margin-left: auto;
-
-  &:hover {
-    background: #333;
-    color: #fff;
-  }
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  cursor: pointer;
 }

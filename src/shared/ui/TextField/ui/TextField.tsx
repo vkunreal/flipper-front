@@ -7,6 +7,7 @@ interface ITextFieldProps {
   value: string
   placeholder?: string
   isTextArea?: boolean
+  rows?: number
   onChange?: (e: ChangeEvent) => void
 }
 
@@ -19,6 +20,7 @@ export const TextField: React.FC<ITextFieldProps> = ({
   placeholder,
   isTextArea,
   className: propsClassName = '',
+  rows = 5,
   onChange,
 }) => {
   const Tag = isTextArea ? 'textarea' : 'input'
@@ -29,10 +31,9 @@ export const TextField: React.FC<ITextFieldProps> = ({
       value={value}
       placeholder={placeholder}
       onChange={onChange}
-      {...(!isTextArea &&
-        {
-          // muk
-        })}
+      {...(isTextArea && {
+        rows,
+      })}
     />
   )
 }

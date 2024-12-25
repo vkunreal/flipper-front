@@ -1,36 +1,17 @@
-import { useCallback, useState } from 'react'
-import { DraftTodo } from '@/shared/model/Todo'
-import { ChangeEvent, TextField } from '@/shared/ui/TextField'
+import { Dispatch, SetStateAction } from 'react'
+import { Button } from '@/shared/ui/Button'
+import { className } from '@/shared/lib/className'
 
 import styles from './CreateTodoBlock.module.scss'
 
-export const CreateTodoBlock: React.FC = () => {
-  const [todoData, setTodoData] = useState<DraftTodo>({
-    title: '',
-    text: '',
-    isAttach: false,
-  })
+interface ChangeCreateTodoBlock {
+  changeVisible: Dispatch<SetStateAction<boolean>>
+}
 
-  const changeField = useCallback((field: keyof DraftTodo) => {
-    return ({ target: { value } }: ChangeEvent) => {
-      setTodoData((prev) => ({ ...prev, [field]: value }))
-    }
-  }, [])
-
+export const CreateTodoBlock = ({ changeVisible }: ChangeCreateTodoBlock) => {
   return (
-    <div className={styles.createTodo}>
-      <TextField
-        placeholder="Название Todo"
-        value={todoData.title}
-        onChange={changeField('title')}
-      />
-
-      <TextField
-        isTextArea
-        placeholder="Описание Todo"
-        value={todoData.text}
-        onChange={changeField('text')}
-      />
+    <div className={className('wrapper', styles.blockWrapper)}>
+      <Button onClick={() => changeVisible(true)}>Создать новую задачу</Button>
     </div>
   )
 }

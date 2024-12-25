@@ -1,6 +1,6 @@
+import { ReactNode } from 'react'
 import { TodoSkeleton } from '@/entities/Todo/TodoSkeleton'
 import { Loader } from '@/shared/ui/Loader'
-
 import { className } from '@/shared/lib/className'
 import { useFetch } from '@/shared/api'
 import { Todo } from '@/shared/model/Todo'
@@ -8,10 +8,15 @@ import { API_ROUTES } from '@/shared/api'
 import { FetchResponse } from '@/shared/model/Network'
 import { $hasTodos, $todoList, setTodos } from '@/app/store/todo/TodoStore'
 import { useUnit } from 'effector-react'
+import { Title } from '@/shared/ui/Title'
 
 import styles from './TodoList.module.scss'
 
-export const TodoList = () => {
+interface TodoListProps {
+  createTodoSlot?: ReactNode
+}
+
+export const TodoList: React.FC<TodoListProps> = ({ createTodoSlot }) => {
   const { loading, error, update } = useFetch<FetchResponse<Todo[]>>({
     url: API_ROUTES.todos,
     doneCB: (todos) => setTodos(todos.data),
@@ -40,6 +45,12 @@ export const TodoList = () => {
 
   return (
     <div className={className(styles.todoList, 'wrapper')}>
+      <Title className={styles.title} size="xl">
+        Список задач:
+      </Title>
+
+      {createTodoSlot}
+
       {todos.map((todo) => (
         <TodoSkeleton key={todo.id} {...todo} />
       ))}

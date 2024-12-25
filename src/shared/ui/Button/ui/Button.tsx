@@ -1,17 +1,17 @@
-import { className } from "@/shared/lib/className";
+import { className } from '@/shared/lib/className'
 
-import styles from "./Button.module.scss";
+import styles from './Button.module.scss'
 
 interface IButton {
-  type?: "button" | "submit";
-  className?: string;
-  children: React.ReactNode;
-  onClick?: () => void;
+  type?: 'button' | 'submit'
+  className?: string
+  children: React.ReactNode
+  onClick?: () => void
 }
 
 export const Button: React.FC<IButton> = ({
-  type = "button",
-  className: propsClass = "",
+  type = 'button',
+  className: propsClass = '',
   children,
   onClick,
 }) => {
@@ -23,5 +23,5 @@ export const Button: React.FC<IButton> = ({
     >
       {children}
     </button>
-  );
-};
+  )
+}
