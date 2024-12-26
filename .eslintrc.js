@@ -19,6 +19,8 @@ module.exports = {
     },
   },
   rules: {
-    // Ваши правила ESLint
+    'react/react-in-jsx-scope': 'off',
+    'react/prop-types': 'off',
+    '@typescript-eslint/triple-slash-reference': 'off',
   },
 }

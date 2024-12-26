@@ -1,1 +1,1 @@
-export { TodoStatus } from "./ui/TodoStatus";
+export { TodoStatus } from './ui/TodoStatus'

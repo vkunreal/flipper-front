@@ -15,7 +15,7 @@ export const $todoList = createStore<Todo[]>([])
   .on(addTodo, (state, todo) => [...state, todo])
   .on(deleteTodo, (state, id) => state.filter((todo) => todo.id !== id))
   .on(changeTodoStatus, (state, { id, status }) =>
-    state.map((todo) => (todo.id === id ? { ...todo, status } : todo))
+    state.map((todo) => (todo.id === id ? { ...todo, status } : todo)),
   )
 
 export const $hasTodos = $todoList.map((state) => !!state.length)

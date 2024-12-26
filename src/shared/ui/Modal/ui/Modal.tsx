@@ -33,7 +33,7 @@ export const Modal: React.FC<IModalProps> = ({
             {children}
           </div>
         </div>,
-        document.getElementById('modal') as Element
+        document.getElementById('modal') as Element,
       )
     : null
 }

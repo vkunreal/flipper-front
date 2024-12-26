@@ -1,4 +1,3 @@
-import { Title } from '@/shared/ui/Title'
 import { CreateTodo } from '@/widgets/Todo/CreateTodo/'
 import { TodoList } from '@/widgets/Todo/TodoList'
 

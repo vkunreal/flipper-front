@@ -12,7 +12,7 @@ export const TodoStatus: React.FC<TodoStatus> = ({ status }) => {
     <div
       className={className(
         styles['todo-status'],
-        styles[`todo-status--${status}`]
+        styles[`todo-status--${status}`],
       )}
     >
       {TodoStatuses[status]}

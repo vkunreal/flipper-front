@@ -1,7 +1,7 @@
 export enum TextTags {
-  "p",
-  "b",
-  "strong",
-  "small",
-  "del",
+  'p',
+  'b',
+  'strong',
+  'small',
+  'del',
 }

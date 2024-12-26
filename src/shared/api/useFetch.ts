@@ -51,7 +51,7 @@ const initialState = {
 export function useFetch<T>({ url, doneCB, failCB }: UseFetchParams<T>) {
   const [state, dispatch] = useReducer<State<T>, [Action<T>]>(
     reducer,
-    initialState
+    initialState,
   )
 
   const fetchData = useCallback(async () => {
@@ -59,11 +59,15 @@ export function useFetch<T>({ url, doneCB, failCB }: UseFetchParams<T>) {
       .then((res) => res.json())
       .then((data) => {
         dispatch({ type: FETCH_TYPES.FETCH_SUCCESS, payload: data })
-        doneCB && doneCB(data)
+        if (doneCB) {
+          doneCB(data)
+        }
       })
       .catch((err) => {
         dispatch({ type: FETCH_TYPES.FETCH_FAILURE, payload: err.message })
-        failCB && failCB(err.message)
+        if (failCB) {
+          failCB(err.message)
+        }
       })
   }, [url, doneCB, failCB])
 
