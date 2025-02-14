@@ -1,3 +1,4 @@
+/* eslint-disable */
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin')
@@ -170,5 +171,6 @@ module.exports = {
     static: './build',
     hot: true,
     open: true,
+    historyApiFallback: true,
   },
 }

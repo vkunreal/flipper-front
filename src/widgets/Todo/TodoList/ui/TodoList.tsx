@@ -1,4 +1,4 @@
-import { ReactNode } from 'react'
+import { ReactNode, useState } from 'react'
 import { TodoSkeleton } from '@/entities/Todo/TodoSkeleton'
 import { Loader } from '@/shared/ui/Loader'
 import { className } from '@/shared/lib/className'
@@ -9,6 +9,7 @@ import { FetchResponse } from '@/shared/model/Network'
 import { $hasTodos, $todoList, setTodos } from '@/app/store/todo/TodoStore'
 import { useUnit } from 'effector-react'
 import { Title } from '@/shared/ui/Title'
+import { PaginationList } from '@/features/PaginationList/ui/PaginationList'
 
 import styles from './TodoList.module.scss'
 
@@ -17,9 +18,13 @@ interface TodoListProps {
 }
 
 export const TodoList: React.FC<TodoListProps> = ({ createTodoSlot }) => {
-  const { loading, error, update } = useFetch<FetchResponse<Todo[]>>({
-    url: API_ROUTES.todos,
-    doneCB: (todos) => setTodos(todos.data),
+  const [todosUrl, setTodosUrl] = useState(API_ROUTES.todos)
+
+  const { data, loading, error, update } = useFetch<FetchResponse<Todo[]>>({
+    url: todosUrl,
+    doneCB: (todos) => {
+      setTodos(todos.data)
+    },
   })
 
   const todos = useUnit($todoList)
@@ -51,9 +56,22 @@ export const TodoList: React.FC<TodoListProps> = ({ createTodoSlot }) => {
 
       {createTodoSlot}
 
-      {todos.map((todo) => (
-        <TodoSkeleton key={todo.id} {...todo} />
-      ))}
+      <PaginationList
+        prevClick={() => {
+          if (data?.prev) {
+            setTodosUrl(data.prev)
+          }
+        }}
+        nextClick={() => {
+          if (data?.next) {
+            setTodosUrl(data.next)
+          }
+        }}
+      >
+        {todos.map((todo) => (
+          <TodoSkeleton key={todo.id} {...todo} />
+        ))}
+      </PaginationList>
     </div>
   )
 }
